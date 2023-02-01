@@ -1,0 +1,23 @@
+Data Binding Techniques in Angular(Data sharing in components)
+-------------------------------------------------------
+
+html-- view
+ts  -- component
+
+
+1. One way Binding
+-------------------
+1.1  component to view data sharing
+    1.1.1  STRING INTERPOLLATION  {{}}
+        to display string directly from ts to html .
+    1.1.2 property binding        [property]=""
+        if we want to share data from ts to view as avalue of any property, then 
+        attribute/prpperty name will be given inside the'[]' 
+1.2  view to component data sharing
+    1.2.1  event binding (event)="method()"
+              the event will be specified in the view and when that event is woking whichever event is to be called 
+              will be invoked.
+
+    1.2.2  event binding using $event(event)=method($event)
+                if we want to access any data/value from the html page along with the event we can use this         
+
