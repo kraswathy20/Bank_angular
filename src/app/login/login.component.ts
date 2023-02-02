@@ -24,16 +24,31 @@ export class LoginComponent {
 
 
   login(){
-    alert("login clicked")
+    var acnum=this.acno
+    var psw=this.psw
+    var userDetails=this.userDetails
+    if(acnum in userDetails){
+      if(psw==userDetails[acnum]["password"]){
+        alert("login Successfull!!")
+      }
+      else{
+        alert("Incorrect Password!")
+      }
+
+    }
+    else{
+      alert("user not Found!!")
+    }
+    // alert("login clicked")
   }
   acnoChange(event:any){
     this.acno=event.target.value
-    console.log(this.acno);
+    // console.log(this.acno);
     
   }
   pswrdChange(event:any){
     this.psw=event.target.value
-    console.log(this.psw);
+    // console.log(this.psw);
     
   }
 }
