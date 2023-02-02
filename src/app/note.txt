@@ -19,5 +19,9 @@ ts  -- component
               will be invoked.
 
     1.2.2  event binding using $event(event)=method($event)
-                if we want to access any data/value from the html page along with the event we can use this         
+                if we want to access any data/value from the html page along with the event we can use this 
+    1.2.3  Event binding with template rendering variable #varia                    
+
+2. Two way Binding
+-------------------
 

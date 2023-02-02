@@ -3,15 +3,15 @@
 <div class="container w-50 mt-5 p3 border border-light text-center" style="background-color:rgba(240, 248, 255, 0.568); border-radius: 20px">
     <h1 class=" mt-4 p-2" style="color:rgb(16, 129, 133)">Sign In To Your Account!</h1>
     <form action="">
-        <!-- Event binding with template rendering varible -->
+        <!-- Two way binding using ngModel -->
         <div>
-            <input #acno type="text" class="form-control mt-3 p-2" id="acid" name="acnum1" [placeholder]="inputplaceholder">
+            <input [(ngModel)]="acno" type="text" class="form-control mt-3 p-2" id="acid" name="acnum1" [placeholder]="inputplaceholder">
         </div>
         <div>
-            <input #psw type="text"  class="form-control mt-3 p-2" id="psw1" name="paswrd1" placeholder="Enter Password">
+            <input [(ngModel)]="psw" type="text"  class="form-control mt-3 p-2" id="psw1" name="paswrd1" placeholder="Enter Password">
         </div>
         <div>
-        <button type="button" class="btn btn-info mt-3 mb-3" (click)="login(acno,psw)">Sign In</button>
+        <button type="button" class="btn btn-info mt-3 mb-3" (click)="login()">Sign In</button>
     </div>
     </form>
 </div>
