@@ -22,6 +22,32 @@ ts  -- component
                 if we want to access any data/value from the html page along with the event we can use this 
     1.2.3  Event binding with template rendering variable #varia                    
 
-2. Two way Binding
+2. Two Way Binding
 -------------------
+
+    2.1 ngModel       [ngModel]="property"     FormsModule (import tz library)
+
+Redirection in Angular
+-----------------------
+Module -- AppRoutingModule
+Router -- a class used to redirect                     dashboard=package   dashboard.component.css=module  
+methods-- navigateByUrl                          inside package->module->class->methods 
+
+
+Dependency Injection
+---------------------
+to share data from one class to another class.it is done inside constructor. for that we require 2 
+access specifiers
+
+1.private -- can be used only within the specified class
+2.public  -- can be used  within that package
+inside constructor
+access_specifiers reference:ClassName
+to call----- reference.method
+
+Angular Services
+----------------
+to store redentent data and methods
+-all the components can access the data and methods defined in service file easily
+
 
