@@ -48,4 +48,57 @@ login(acno:any,psw:any){
     }
     
 }
+
+deposit(acnum:any,password:any,amount:any){
+  // inorder to avoid calling this.userDetails
+  let userDetails=this.userDetails
+  // convert string to integer
+  var amnt=parseInt(amount)
+  if(acnum in userDetails){
+    if(password==userDetails[acnum]["password"]){
+      // update balance
+      userDetails[acnum]["balance"]+=amnt
+
+      // return current balance
+      return userDetails[acnum]["balance"]
+    }
+    else{
+      return false
+    }
+  }
+  else{
+    return false
+  }
+}
+
+withdraw(acnum:any,password:any,amount:any){
+  // inorder to avoid calling this.userDetails
+  let userDetails=this.userDetails
+  // convert string to integer
+  var amnt=parseInt(amount)
+  if(acnum in userDetails){
+    if(password==userDetails[acnum]["password"]){
+      if(amnt<userDetails[acnum]["balance"]){
+        // update balance
+      userDetails[acnum]["balance"]-=amnt
+        // return current balance
+      return userDetails[acnum]["balance"]
+      }
+      else{
+        alert("insufficient balance")
+        return false
+      }
+      
+    }
+    else{
+      alert("incorrect password")
+      return false
+    }
+  }
+  else{
+    alert("incorrect acnum")
+    return false
+  }
+}
+
 }

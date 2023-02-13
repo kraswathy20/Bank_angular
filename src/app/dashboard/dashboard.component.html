@@ -14,16 +14,18 @@
           id="acid"
           name="acnum1"
           placeholder="Enter Account Number"
+          [(ngModel)]="acno"
         />
       </div>
       <div>
         <input
           
-          type="text"
+          type="password"
           class="form-control mt-3 p-2"
           id="psw1"
           name="paswrd1"
           placeholder="Enter Password"
+          [(ngModel)]="psw"
         />
       </div>
     <div>
@@ -34,12 +36,13 @@
         id="amouid"
         name="amnt1"
         placeholder="Enter Deposit Amount"
+        [(ngModel)]="amnt"
       />
     </div>
     
     
     <div>
-      <button type="submit" class="btn btn-outline-primary mt-3 mb-3">Deposit</button>
+      <button type="submit" (click)="deposit()" class="btn btn-outline-primary mt-3 mb-3">Deposit</button>
     </div>
   </form>
 </div>
@@ -59,16 +62,18 @@
           id="acid2"
           name="acnum2"
           placeholder="Enter Account Number"
+          [(ngModel)]="acno1"
         />
       </div>
       <div>
         <input
           
-          type="text"
+          type="password"
           class="form-control mt-3 p-2"
           id="psw2"
           name="paswrd2"
           placeholder="Enter Password"
+          [(ngModel)]="psw1"
         />
       </div>
     <div>
@@ -79,12 +84,13 @@
         id="amouid1"
         name="amnt2"
         placeholder="Enter Withdrawal Amount"
+        [(ngModel)]="amnt1"
       />
     </div>
     
     
     <div>
-      <button type="submit" class="btn btn-outline-primary mt-3 mb-3">Withdraw</button>
+      <button type="submit" (click)="withdraw()" class="btn btn-outline-primary mt-3 mb-3">Withdraw</button>
     </div>
   </form>
 </div>
