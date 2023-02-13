@@ -17,6 +17,7 @@ export class LoginComponent {
   psw=''
 
   
+  
   // dependency injection
   constructor(private router:Router,private ds:DataService){ }
 
@@ -24,21 +25,16 @@ export class LoginComponent {
   login(){
     var acnum=this.acno
     var psw=this.psw
-    var userDetails=this.ds.userDetails
-    if(acnum in userDetails){
-      if(psw==userDetails[acnum]["password"]){
-        alert("login Successfull!!")
-        this.router.navigateByUrl('dashboard')
-      }
-      else{
-        alert("Incorrect Password!")
-      }
 
+    const result=this.ds.login(acnum,psw)
+    if(result){
+      alert("login Success!");
+      this.router.navigateByUrl('dashboard')
     }
     else{
-      alert("user not Found!!")
+      alert("incorrect acno or password")
     }
-    // alert("login clicked")
+    
   }
 
 

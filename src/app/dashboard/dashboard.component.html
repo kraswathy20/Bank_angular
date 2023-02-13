@@ -1,1 +1,92 @@
-<h1>Welcome User</h1>
+<h1>Welcome {{ user }}</h1>
+<div class="container row">
+<div class="text-center  col-lg-6 col-md-12">
+  <div class="container w-75 mt-5 p3 border border-light text-center me-4" style="background-color:rgba(240, 248, 255, 0.568); border-radius: 20px">
+
+    <h1 class="text-success">Deposit</h1>
+  <form action="">
+    <!-- Two way binding using ngModel -->
+    <div>
+        <input
+          
+          type="text"
+          class="form-control mt-3 p-2"
+          id="acid"
+          name="acnum1"
+          placeholder="Enter Account Number"
+        />
+      </div>
+      <div>
+        <input
+          
+          type="text"
+          class="form-control mt-3 p-2"
+          id="psw1"
+          name="paswrd1"
+          placeholder="Enter Password"
+        />
+      </div>
+    <div>
+      <input
+        
+        type="text"
+        class="form-control mt-3 p-2"
+        id="amouid"
+        name="amnt1"
+        placeholder="Enter Deposit Amount"
+      />
+    </div>
+    
+    
+    <div>
+      <button type="submit" class="btn btn-outline-primary mt-3 mb-3">Deposit</button>
+    </div>
+  </form>
+</div>
+</div>
+
+<div class="text-center col-lg-6 col-md-12">
+  <div class="container w-75 mt-5 p3 border border-light text-center me-4" style="background-color:rgba(240, 248, 255, 0.568); border-radius: 20px">
+
+    <h1>Withdraw</h1>
+  <form action="">
+    <!-- Two way binding using ngModel -->
+    <div>
+        <input
+          
+          type="text"
+          class="form-control mt-3 p-2"
+          id="acid2"
+          name="acnum2"
+          placeholder="Enter Account Number"
+        />
+      </div>
+      <div>
+        <input
+          
+          type="text"
+          class="form-control mt-3 p-2"
+          id="psw2"
+          name="paswrd2"
+          placeholder="Enter Password"
+        />
+      </div>
+    <div>
+      <input
+        
+        type="text"
+        class="form-control mt-3 p-2"
+        id="amouid1"
+        name="amnt2"
+        placeholder="Enter Withdrawal Amount"
+      />
+    </div>
+    
+    
+    <div>
+      <button type="submit" class="btn btn-outline-primary mt-3 mb-3">Withdraw</button>
+    </div>
+  </form>
+</div>
+</div>
+</div>
