@@ -6,14 +6,15 @@ import { Injectable } from '@angular/core';
 export class DataService {
 
   currentUser:any
+  currentAcno:any
 
   constructor() { }
 
   userDetails:any={
-    1000:{acno:1000,username:"anu",password:"abc123",balance:0},
-    1001:{acno:1001,username:"amal",password:"abc123",balance:0},
-    1003:{acno:1003,username:"arun",password:"abc123",balance:0},
-    1004:{acno:1004,username:"akhil",password:"abc123",balance:0}
+    1000:{acno:1000,username:"anu",password:"abc123",balance:0,transaction:[]},
+    1001:{acno:1001,username:"amal",password:"abc123",balance:0,transaction:[]},
+    1003:{acno:1003,username:"arun",password:"abc123",balance:0,transaction:[]},
+    1004:{acno:1004,username:"akhil",password:"abc123",balance:0,transaction:[]}
   }
 // any updation in database has to done, then its logic must be given in thz dataservice(bcz as we dont have db nw)
 
@@ -36,6 +37,9 @@ login(acno:any,psw:any){
       if(psw==userDetails[acno]["password"]){
         this.currentUser=userDetails[acno]["username"]
         // alert("login Successfull!!")
+
+        this.currentAcno=acno
+       
         return true
       }
       else{
@@ -59,6 +63,9 @@ deposit(acnum:any,password:any,amount:any){
       // update balance
       userDetails[acnum]["balance"]+=amnt
 
+      // transaction data store
+      userDetails[acnum]["transaction"].push({Type:"CREDIT",amount:amnt})
+
       // return current balance
       return userDetails[acnum]["balance"]
     }
@@ -78,9 +85,14 @@ withdraw(acnum:any,password:any,amount:any){
   var amnt=parseInt(amount)
   if(acnum in userDetails){
     if(password==userDetails[acnum]["password"]){
-      if(amnt<userDetails[acnum]["balance"]){
+      if(amnt<=userDetails[acnum]["balance"]){
         // update balance
       userDetails[acnum]["balance"]-=amnt
+
+      userDetails[acnum]["transaction"].push({Type:"DEBIT",amount:amnt})
+        console.log(userDetails);
+        
+
         // return current balance
       return userDetails[acnum]["balance"]
       }
@@ -100,5 +112,7 @@ withdraw(acnum:any,password:any,amount:any){
     return false
   }
 }
-
+getTransaction(acno:any){
+  return this.userDetails[acno]["transaction"]
+}
 }
