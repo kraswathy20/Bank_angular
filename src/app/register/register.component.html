@@ -2,16 +2,16 @@
 
 <div class="container w-50 mt-5 p3 border border-light text-center" style="background-color:rgba(240, 248, 255, 0.568); border-radius: 20px">
     <h1 class=" mt-4 p-2" style="color:rgb(16, 129, 133)">Sign Up To Bank!</h1>
-    <form action="" (ngSubmit)="register()">
+    <form [formGroup]="registerForm" action="" (ngSubmit)="register()">
         <!-- Two way binding using ngModel -->
         <div>
-            <input [(ngModel)]="uname" type="text" class="form-control mt-3 p-2" id="unamid" name="usern1" placeholder="Enter Username">
+            <input formControlName="uname" type="text" class="form-control mt-3 p-2" id="unamid" name="usern1" placeholder="Enter Username">
         </div>
         <div>
-            <input [(ngModel)]="acno" type="text" class="form-control mt-3 p-2" id="acid" name="acnum1" placeholder="Enter Account Number">
+            <input formControlName="acno" type="text" class="form-control mt-3 p-2" id="acid" name="acnum1" placeholder="Enter Account Number">
         </div>
         <div>
-            <input [(ngModel)]="psw" type="text"  class="form-control mt-3 p-2" id="psw1" name="paswrd1" placeholder="Enter Password">
+            <input formControlName="psw" type="text"  class="form-control mt-3 p-2" id="psw1" name="paswrd1" placeholder="Enter Password">
         </div>
         <div>
         <button type="submit"  class="btn btn-primary mt-3 mb-3" >Register</button>
@@ -19,3 +19,4 @@
    
     </form>
 </div>
+<!-- formControlName--to share datato ts . -->

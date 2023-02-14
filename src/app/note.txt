@@ -11,7 +11,7 @@ ts  -- component
     1.1.1  STRING INTERPOLLATION  {{}}
         to display string directly from ts to html .
     1.1.2 property binding        [property]=""
-        if we want to share data from ts to view as avalue of any property, then 
+        if we want to share data from ts to view as a value of any property, then 
         attribute/prpperty name will be given inside the'[]' 
 1.2  view to component data sharing
     1.2.1  event binding (event)="method()"
@@ -31,17 +31,18 @@ Redirection in Angular
 -----------------------
 Module -- AppRoutingModule
 Router -- a class used to redirect                     dashboard=package   dashboard.component.css=module  
-methods-- navigateByUrl                          inside package->module->class->methods 
+methods-- navigateByUrl                          inside package->module->class->methods & variables
 
 
 Dependency Injection
 ---------------------
 to share data from one class to another class.it is done inside constructor. for that we require 2 
-access specifiers
+access_specifiers
 
 1.private -- can be used only within the specified class
 2.public  -- can be used  within that package
 inside constructor
+
 access_specifiers reference:ClassName
 to call----- reference.method
 
@@ -51,3 +52,33 @@ to store redentent data and methods
 -all the components can access the data and methods defined in service file easily
 
 
+        ng g s service_name
+
+
+Angular Directives - to manipulate/change  DOM 
+------------------
+
+1.component Directives
+when a component is created DOM is changed(an extra html page is added). such are component Directives
+
+2.Structural Directives
+*ngFor     (for loop) an extra row is added.
+sometimes we need to perform iteration in objects or collections in the html page
+
+
+
+Validation in angular
+----------------------
+
+form creation in angular
+
+    1.template driven form - first create the form using html tag and then validate the code using extra code
+    2.Model driven  form -we can easily validate the form.we create a model of the form.so along with the model 
+      we can perform validation and data-binding
+
+
+            2.1 reactive form-- used to create model of form
+
+                reactive form conatains- a group,array and a control
+
+                -reactiveFormsModule - The module used to create reactive form.
