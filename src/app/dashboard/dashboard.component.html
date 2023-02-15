@@ -4,7 +4,7 @@
   <div class="container w-75 mt-5 p3 border border-light text-center me-4" style="background-color:rgba(240, 248, 255, 0.568); border-radius: 20px">
 
     <h1 class="text-success">Deposit</h1>
-  <form action="">
+  <form [formGroup]=" depositForm" action="">
     <!-- Two way binding using ngModel -->
     <div>
         <input
@@ -14,8 +14,11 @@
           id="acid"
           name="acnum1"
           placeholder="Enter Account Number"
-          [(ngModel)]="acno"
+          formControlName="acno"
         />
+      </div>
+      <div *ngIf="this.depositForm.get('acno')?.errors && this.depositForm.get('acno')?.touched">
+        <p class="text-danger">Invalid Account Number</p>
       </div>
       <div>
         <input
@@ -25,8 +28,11 @@
           id="psw1"
           name="paswrd1"
           placeholder="Enter Password"
-          [(ngModel)]="psw"
+          formControlName="psw"
         />
+      </div>
+      <div *ngIf="this.depositForm.get('psw')?.errors && this.depositForm.get('psw')?.touched">
+        <p class="text-danger">Invalid Password</p>
       </div>
     <div>
       <input
@@ -36,10 +42,12 @@
         id="amouid"
         name="amnt1"
         placeholder="Enter Deposit Amount"
-        [(ngModel)]="amnt"
+        formControlName="amnt"
       />
     </div>
-    
+    <div *ngIf="this.depositForm.get('amnt')?.errors && this.depositForm.get('amnt')?.touched">
+      <p class="text-danger">Invalid Amount</p>
+    </div>
     
     <div>
       <button type="submit" (click)="deposit()" class="btn btn-outline-primary mt-3 mb-3">Deposit</button>
@@ -52,7 +60,7 @@
   <div class="container w-75 mt-5 p3 border border-light text-center me-4" style="background-color:rgba(240, 248, 255, 0.568); border-radius: 20px">
 
     <h1>Withdraw</h1>
-  <form action="">
+  <form [formGroup]="withdrawForm" action="">
     <!-- Two way binding using ngModel -->
     <div>
         <input
@@ -62,8 +70,11 @@
           id="acid2"
           name="acnum2"
           placeholder="Enter Account Number"
-          [(ngModel)]="acno1"
+          formControlName="acno1"
         />
+      </div>
+      <div *ngIf="this.withdrawForm.get('acno1')?.errors && this.withdrawForm.get('acno1')?.touched">
+        <p class="text-danger">Invalid Account Number</p>
       </div>
       <div>
         <input
@@ -73,8 +84,11 @@
           id="psw2"
           name="paswrd2"
           placeholder="Enter Password"
-          [(ngModel)]="psw1"
+          formControlName="psw1"
         />
+      </div>
+      <div *ngIf="this.withdrawForm.get('psw1')?.errors && this.withdrawForm.get('psw1')?.touched">
+        <p class="text-danger">Invalid Password</p>
       </div>
     <div>
       <input
@@ -84,10 +98,12 @@
         id="amouid1"
         name="amnt2"
         placeholder="Enter Withdrawal Amount"
-        [(ngModel)]="amnt1"
+        formControlName="amnt1"
       />
     </div>
-    
+    <div *ngIf="this.withdrawForm.get('amnt1')?.errors && this.withdrawForm.get('amnt1')?.touched">
+      <p class="text-danger">Invalid Amount</p>
+    </div>
     
     <div>
       <button type="submit" (click)="withdraw()" class="btn btn-outline-primary mt-3 mb-3">Withdraw</button>

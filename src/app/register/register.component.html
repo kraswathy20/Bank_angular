@@ -7,12 +7,21 @@
         <div>
             <input formControlName="uname" type="text" class="form-control mt-3 p-2" id="unamid" name="usern1" placeholder="Enter Username">
         </div>
+        <div *ngIf="this.registerForm.get('uname')?.errors && this.registerForm.get('uname')?.touched">
+            <p class="text-danger">Invalid Username</p>
+          </div>
         <div>
             <input formControlName="acno" type="text" class="form-control mt-3 p-2" id="acid" name="acnum1" placeholder="Enter Account Number">
         </div>
+        <div *ngIf="this.registerForm.get('acno')?.errors && this.registerForm.get('acno')?.touched">
+            <p class="text-danger">Invalid Account Number</p>
+          </div>
         <div>
             <input formControlName="psw" type="text"  class="form-control mt-3 p-2" id="psw1" name="paswrd1" placeholder="Enter Password">
         </div>
+        <div *ngIf="this.registerForm.get('psw')?.errors && this.registerForm.get('psw')?.touched">
+            <p class="text-danger">Invalid Password</p>
+          </div>
         <div>
         <button type="submit"  class="btn btn-primary mt-3 mb-3" >Register</button>
     </div>

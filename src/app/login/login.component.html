@@ -2,17 +2,23 @@
 <h4 class="p-1 ms-5" style="color:coral;">{{data}}</h4>
 <div class="container w-50 mt-5 p3 border border-light text-center" style="background-color:rgba(240, 248, 255, 0.568); border-radius: 20px">
     <h1 class=" mt-4 p-2" style="color:rgb(16, 129, 133)">Sign In To Your Account!</h1>
-    <form action="" (ngSubmit)="login()">
+    <form [formGroup]="loginForm" action="" (ngSubmit)="login()">
         <!-- Two way binding using ngModel -->
         <div>
-            <input [(ngModel)]="acno" type="text" class="form-control mt-3 p-2" id="acid" name="acnum1" [placeholder]="inputplaceholder">
+            <input formControlName="acno" type="text" class="form-control mt-3 p-2" id="acid" name="acnum1" [placeholder]="inputplaceholder">
         </div>
+        <div *ngIf="this.loginForm.get('acno')?.errors && this.loginForm.get('acno')?.touched">
+            <p class="text-danger">Invalid Account Number</p>
+          </div>
         <div>
-            <input [(ngModel)]="psw" type="text"  class="form-control mt-3 p-2" id="psw1" name="paswrd1" placeholder="Enter Password">
+            <input formControlName="psw" type="text"  class="form-control mt-3 p-2" id="psw1" name="paswrd1" placeholder="Enter Password">
         </div>
+        <div *ngIf="this.loginForm.get('psw')?.errors && this.loginForm.get('psw')?.touched">
+            <p class="text-danger">Invalid Password</p>
+          </div>
         <div>
         <button type="submit" class="btn btn-info mt-3 mb-3" >LogIn</button>
-    </div>
+         </div>
     <div class="text-center ">
        <strong>Not Registered ?</strong>  <a style="text-decoration: none;" routerLink="register">
         <strong>Register</strong> </a></div>
