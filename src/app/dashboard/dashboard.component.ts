@@ -13,6 +13,7 @@ export class DashboardComponent {
 
 user:any
 acno:any
+datedetails:any 
 
 // acno:any
 // psw:any
@@ -24,6 +25,9 @@ acno:any
 
   constructor(private ds:DataService,private fb:FormBuilder,private router:Router) { 
     this.user=this.ds.currentUser
+
+    // access date
+    this.datedetails=new Date()
   }
   depositForm=this.fb.group({
     acno:['',[Validators.required,Validators.pattern('[0-9]+')]],
@@ -84,5 +88,8 @@ acno:any
   }
   deleteParent(){
   this.acno=JSON.parse(localStorage.getItem('currentAcno') ||'')
+  }
+  cancel(){
+    this.acno=''
   }
 }

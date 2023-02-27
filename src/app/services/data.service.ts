@@ -39,7 +39,7 @@ export class DataService {
     if(localStorage.getItem('database')){
       this.userDetails=JSON.parse(localStorage.getItem('database')||'')
     }
-    // if there is current user in localstorage then it is stored to this.currentuser(since this.currentuser
+    // if there is 'currentUser' in 'localstorage' then it is stored to this.currentuser(since this.currentuser
     // is used in login() to store data)
     if(localStorage.getItem('currentUser')){
       this.currentUser= localStorage.getItem('currentUser')

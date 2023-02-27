@@ -65,6 +65,8 @@ when a component is created DOM is changed(an extra html page is added). such ar
 *ngFor     (for loop) an extra row is added.
 sometimes we need to perform iteration in objects or collections in the html page
 
+3.attribute directive     eg) [ngClass]
+to applies a class on a component.based on a condition to display a class or not.
 
 
 Validation in angular
@@ -81,4 +83,46 @@ form creation in angular
 
                 reactive form conatains- a group,array and a control
 
-                -reactiveFormsModule - The module used to create reactive form.
+                -ReactiveFormsModule - The module used to create reactive form.
+                -FormBuilder         - class used to build model form
+                -group()             - method to create model
+
+
+local Storage in angular
+-------------------------
+
+localStorage.getItem()----to get elements
+localStorage.setItem()----to store elements
+localStorage.removeItem()--to delete data
+
+ty - json ---- stringify
+json - ty ------ parse
+
+Parent Child Components Communication
+---------------------------------------
+
+@Input --  parent to child data sharing
+@Output -- child to parent data sharing
+
+
+Event Creation In Angular
+--------------------------
+
+we can create our own events in angular projects
+
+EventEmitter - class used to create userdefined events
+
+
+                eventname=new EventEmitter() --creating event
+                emit()                       --method to determine when to start the event. i.e; time specify
+
+
+
+Date and TIme In angular
+-------------------------
+
+class---- Date
+
+Angular Pipes
+--------------
+to convert data into another format 
