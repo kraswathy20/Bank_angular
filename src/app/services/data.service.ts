@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -9,7 +10,7 @@ export class DataService {
   currentAcno:any
   userDetails:any
 
-  constructor() { 
+  constructor(private http:HttpClient) { 
     this.getData()
   }
 
@@ -53,16 +54,9 @@ export class DataService {
 // any updation in database has to done, then its logic must be given in thz dataservice(bcz as we dont have db nw)
 
 register(uname:any,acno:any,psw:any){
-  if(acno in this.userDetails){
-    return false
-  }
-  else{
-    this.userDetails[acno]={acno,username:uname,password:psw,balance:0,transaction:[]}
-    // console.log(this.userDetails);
-    this.saveData()
-    return true
-  }
-
+  // create api  body data 
+  const data={uname,acno,psw}
+  return this.http.post('http://localhost:3000/register',data)
 }
 
 login(acno:any,psw:any){

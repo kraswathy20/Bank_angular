@@ -126,3 +126,26 @@ class---- Date
 Angular Pipes
 --------------
 to convert data into another format 
+datepipes
+
+
+API creations in Angular
+------------------------
+
+HttpClientModule  - module to create web api calls
+
+HttpClients       - class inside HttpClientModule
+
+folder     file    class    methods
+package    modules  class   methods
+
+
+Asynchronous code handling in ts
+--------------------------------
+
+js - promise - resolve  then()
+             - reject   catch()
+
+
+ts - observable - resolve  subscribe()
+                - reject    catch()
