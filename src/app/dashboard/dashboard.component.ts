@@ -1,3 +1,4 @@
+import { ResourceLoader } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -24,7 +25,7 @@ datedetails:any
 // amnt1:any
 
   constructor(private ds:DataService,private fb:FormBuilder,private router:Router) { 
-    this.user=this.ds.currentUser
+    this.user= JSON.parse(localStorage.getItem("currentUser")|| "")
 
     // access date
     this.datedetails=new Date()
@@ -43,24 +44,26 @@ datedetails:any
 
 
   ngOnInit():void{
-    if(!localStorage.getItem('currentAcno')){
-      alert("please LogIn")
-      this.router.navigateByUrl('')
-    }
+    // if(!localStorage.getItem('currentAcno')){
+    //   alert("please LogIn")
+    //   this.router.navigateByUrl('')
+    // }
   }
   deposit(){
     var acno=this.depositForm.value.acno
     var psw=this.depositForm.value.psw
     var amnt=this.depositForm.value.amnt
+
+
     if(this.depositForm.valid){
-    const result=this.ds.deposit(acno,psw,amnt)
-    if(result){
-      alert(`Your account has been credited with amount ${amnt}.Your availabale balance is ${result}`)
-    }
-    else{
-      alert("incorrect account Number or password!")
-    }
+    this.ds.deposit(acno,psw,amnt).subscribe((result:any)=>{
+      alert(result.message)
+    },
+    result=>{
+      alert(result.error.message)
+    })
   }
+    
   else{
     alert("invalid Form")
   }
@@ -71,16 +74,20 @@ datedetails:any
     var psw=this.withdrawForm.value.psw1
     var amnt=this.withdrawForm.value.amnt1
     if(this.withdrawForm.valid){
-    const result=this.ds.withdraw(acno,psw,amnt)
-    if(result){
-      alert(`Your account has been debited with amount ${amnt}.Your availabale balance is ${result}`)
-    }
+    this.ds.withdraw(acno,psw,amnt).subscribe((result:any)=>{
+      alert(result.message)
+    },
+    result=>{
+      alert(result.error.message)
+    })
+    
   }
   else{
     alert("invalid Form!")
   }
-
   }
+
+
   logout(){
     localStorage.removeItem("currentUser")
     localStorage.removeItem("currentAcno")

@@ -32,14 +32,19 @@ loginForm=this.fb.group({
     var acnum=this.loginForm.value.acno
     var psw=this.loginForm.value.psw
     if(this.loginForm.valid){
-      const result=this.ds.login(acnum,psw)
-    if(result){
-      alert("login Success!");
-      this.router.navigateByUrl('dashboard')
-    }
-    else{
-      alert("incorrect acno or password")
-    }
+      this.ds.login(acnum,psw).subscribe((result:any)=>{
+
+        localStorage.setItem("currentUser",JSON.stringify(result.currentUser))
+        localStorage.setItem("currentAcno",JSON.stringify(result.currentAcno))
+        localStorage.setItem("token",JSON.stringify(result.token))
+
+        alert(result.message)
+        this.router.navigateByUrl('dashboard')
+
+      },
+      result=>{
+        alert(result.error.message)
+      })
     }
     else
     {

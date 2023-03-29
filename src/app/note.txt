@@ -149,3 +149,9 @@ js - promise - resolve  then()
 
 ts - observable - resolve  subscribe()
                 - reject    catch()
+
+
+Header Generation for Api request
+----------------------------------
+
+HttpHeaders - class used to generate headers

@@ -1,9 +1,16 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+// overloading headers as global
+
+const option={
+  headers : new HttpHeaders()
+}
 
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class DataService {
 
   currentUser:any
@@ -11,7 +18,7 @@ export class DataService {
   userDetails:any
 
   constructor(private http:HttpClient) { 
-    this.getData()
+    // this.getData()
   }
 
   // userDetails:any={
@@ -34,22 +41,35 @@ export class DataService {
   }
 
 
-  getData(){
-    // if there is a 'database' in 'localstorage' then it is stored to this.userdetails(since this.userdetails 
-    // is used in register() for storing data)
-    if(localStorage.getItem('database')){
-      this.userDetails=JSON.parse(localStorage.getItem('database')||'')
-    }
-    // if there is 'currentUser' in 'localstorage' then it is stored to this.currentuser(since this.currentuser
-    // is used in login() to store data)
-    if(localStorage.getItem('currentUser')){
-      this.currentUser= localStorage.getItem('currentUser')
-    }
-    if(localStorage.getItem('currentAcno')){
-      this.currentAcno=JSON.parse(localStorage.getItem('currentAcno')|| '')
-    }
-  }
+  // getData(){
+  //   // if there is a 'database' in 'localstorage' then it is stored to this.userdetails(since this.userdetails 
+  //   // is used in register() for storing data)
+  //   if(localStorage.getItem('database')){
+  //     this.userDetails=JSON.parse(localStorage.getItem('database')||'')
+  //   }
+  //   // if there is 'currentUser' in 'localstorage' then it is stored to this.currentuser(since this.currentuser
+  //   // is used in login() to store data)
+  //   if(localStorage.getItem('currentUser')){
+  //     this.currentUser= localStorage.getItem('currentUser')
+  //   }
+  //   if(localStorage.getItem('currentAcno')){
+  //     this.currentAcno=JSON.parse(localStorage.getItem('currentAcno')|| '')
+  //   }
+  // }
 
+  getToken(){
+    // access token
+    const token=JSON.parse(localStorage.getItem("token") || "")
+
+    // generate header
+    let headers=new HttpHeaders()
+
+    if(token){
+      // append token in header
+     option.headers=headers.append("access_token",token)
+    }
+    return option
+  }
 
 // any updation in database has to done, then its logic must be given in thz dataservice(bcz as we dont have db nw)
 
@@ -60,87 +80,20 @@ register(uname:any,acno:any,psw:any){
 }
 
 login(acno:any,psw:any){
-  var userDetails=this.userDetails
-    if(acno in userDetails){
-      if(psw==userDetails[acno]["password"]){
-        this.currentUser=userDetails[acno]["username"]
-        // alert("login Successfull!!")
-
-        this.currentAcno=acno
-        this.saveData()
-        return true
-      }
-      else{
-        return false
-      }
-
-    }
-    else{
-      return false
-    }
-    
+  // creating api body
+  const data={acno,psw}
+      // api call      must include return inorder to get the resultant value to whoever it is calling
+      return this.http.post('http://localhost:3000/login',data)
 }
 
 deposit(acnum:any,password:any,amount:any){
-  // inorder to avoid calling this.userDetails
-  let userDetails=this.userDetails
-  // convert string to integer
-  var amnt=parseInt(amount)
-  if(acnum in userDetails){
-    if(password==userDetails[acnum]["password"]){
-      // update balance
-      userDetails[acnum]["balance"]+=amnt
-
-      // transaction data store
-      userDetails[acnum]["transaction"].push({Type:"CREDIT",amount:amnt})
-
-      this.saveData()
-
-      // return current balance
-      return userDetails[acnum]["balance"]
-    }
-    else{
-      return false
-    }
+  const data = {acnum,password,amount}
+  return this.http.post('http://localhost:3000/deposit',data,this.getToken())
   }
-  else{
-    return false
-  }
-}
 
 withdraw(acnum:any,password:any,amount:any){
-  // inorder to avoid calling this.userDetails
-  let userDetails=this.userDetails
-  // convert string to integer
-  var amnt=parseInt(amount)
-  if(acnum in userDetails){
-    if(password==userDetails[acnum]["password"]){
-      if(amnt<=userDetails[acnum]["balance"]){
-        // update balance
-      userDetails[acnum]["balance"]-=amnt
-
-      userDetails[acnum]["transaction"].push({Type:"DEBIT",amount:amnt})
-        console.log(userDetails);
-        
-        this.saveData()
-        // return current balance
-      return userDetails[acnum]["balance"]
-      }
-      else{
-        alert("insufficient balance")
-        return false
-      }
-      
-    }
-    else{
-      alert("incorrect password")
-      return false
-    }
-  }
-  else{
-    alert("incorrect acnum")
-    return false
-  }
+  const data={acnum,password,amount}
+  return this.http.post('http://localhost:3000/withdraw',data,this.getToken())
 }
 getTransaction(acno:any){
   return this.userDetails[acno]["transaction"]
