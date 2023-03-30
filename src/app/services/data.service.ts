@@ -96,6 +96,7 @@ withdraw(acnum:any,password:any,amount:any){
   return this.http.post('http://localhost:3000/withdraw',data,this.getToken())
 }
 getTransaction(acno:any){
-  return this.userDetails[acno]["transaction"]
+  const data={acno}
+  return this.http.post('http://localhost:3000/transaction',data,this.getToken())
 }
 }
